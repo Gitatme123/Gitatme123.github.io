@@ -61,7 +61,6 @@ function buildCharts(sample) {
     var metadata_1 = data.metadata;
 
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    var sampArray = [sample]
     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
 
     //  5. Create a variable that holds the first sample in the array.
@@ -69,9 +68,9 @@ function buildCharts(sample) {
 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_ids_ = sampArray['otu_ids']
-    var otu_labels_ = sampArray['otu_labels']
-    var sample_values = sampArray['sample_values']
+    var otu_ids_ = firstSample_1['otu_ids']
+    var otu_labels_ = firstSample_1['otu_labels']
+    var sample_values = firstSample_1['sample_values']
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
