@@ -49,7 +49,6 @@ function buildMetadata(sample) {
     Object.entries(result).forEach(([key, value]) => {
       PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
-
   });
 }
 
@@ -65,28 +64,28 @@ function buildCharts(sample) {
     //  5. Create a variable that holds the first sample in the array.
     var firstSample = sampArray[0];
 
-
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids_ = firstSample['otu_ids'];
     var otu_labels_ = firstSample['otu_labels'];
     var sample_values = firstSample['sample_values'];
 
-
-
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
-
-    var yticks = otu_ids_.map(otu_ids_ => 'OTU ${otu_ids_}').slice(0,10).reverse();
-    var xticks = sample_values.map(sample_values => parseInt(sample_values));
+    var xticks = sample_values.map(function(sample_values){
+                        return parseInt(sample_values);
+    });
+    console.log(xticks);
+    
+    var yticks = otu_ids_.map(otu_ids_ => parseInt(otu_ids_.xticks)).slice(0,10).reverse();
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
       x: xticks.slice(0, 10).reverse(),
       y: yticks,
-      hovertext: otu_labels_.slice(0, 10).reverse(),
+      text: otu_labels_.slice(0, 10).reverse(),
       type: 'bar',
-      margin: 10,
+      orientation: 'h'
     } ];
 
     // 9. Create the layout for the bar chart. 
@@ -97,25 +96,22 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot('bar', barData, barLayout);
-  });
-}
-
 
 //Deliverable 2
 // Bar and Bubble charts
 // Create the buildCharts function.
-function buildCharts(sample) {
-  // Use d3.json to load and retrieve the samples.json file 
-  d3.json("samples.json").then((data) => {
-    var metadata_1 = data.samples;
-    // 4. Create a variable that filters the samples for the object with the desired sample number.
-    var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
+// function buildCharts(sample) {
+//   // Use d3.json to load and retrieve the samples.json file 
+//   d3.json("samples.json").then((data) => {
+//     var metadata_1 = data.samples;
+//     // 4. Create a variable that filters the samples for the object with the desired sample number.
+//     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
 
-    //  5. Create a variable that holds the first sample in the array.
-    var firstSample = sampArray[0];
+//     //  5. Create a variable that holds the first sample in the array.
+//     var firstSample = sampArray[0];
 
 
-    // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids_1 = firstSample['otu_ids'];
     var otu_labels_1 = firstSample['otu_labels'];
     var sample_values1 = firstSample['sample_values'];
@@ -123,7 +119,6 @@ function buildCharts(sample) {
     var yticks_ = sample_values1.map(sample_values1 => parseInt(sample_values1));
 
     // 1. Create the trace for the bubble chart.
-    var size = [sample_values1]
 
     var bubbleData = [
       { y: yticks_,
