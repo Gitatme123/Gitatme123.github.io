@@ -111,27 +111,28 @@ function buildCharts(sample) {
     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
 
     //  5. Create a variable that holds the first sample in the array.
-    var firstSample_1 = sampArray[0];
+    var firstSample_2 = sampArray[0];
 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_ids_ = firstSample_1['otu_ids']
-    var otu_labels_ = firstSample_1['otu_labels']
-    var sample_values = firstSample_1['sample_values']
+    var otu_ids_1 = firstSample_2['otu_ids']
+    var otu_labels_1 = firstSample_2['otu_labels']
+    var sample_values1 = firstSample_2['sample_values']
 
-    var yticks_ = otu_ids_.map(otu_ids_ => 'OTU ${otu_ids_}').slice(0,10).reverse();
+    
 
     // 1. Create the trace for the bubble chart.
     var bubbleData = [
-      { y: yticks_,
-        x: otu_ids_.slice(0, 10).reverse(),
-        text: otu_labels_.slice(0, 10).reverse(),
+      { y: sample_values1,
+        x: otu_ids_1,
+        text: otu_labels_1,
         type: 'bubble',
         mode: 'markers',
         marker: {
-          size: 'yticks_',
-          color: 'size',
-          colorscale: 'size',
+          size: [sample_values1],
+          color: 'rivercolor',
+          colorscale: [[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']],
+          hover_data: [otu_ids_1],
         }
       } ];
 
@@ -140,7 +141,6 @@ function buildCharts(sample) {
       title: "Bacteria Bubble",
       xaxis: {title: "otu IDs" },
       yaxis: {title: "Sample Values"},
-      margin: (arg=bubbleData, b=[0, 100], l=[0, 100], pad=[0, 100]),
       property: 'hovermode'
     };
 
@@ -149,3 +149,49 @@ function buildCharts(sample) {
   });
 }
 
+// Create the buildChart function.
+function buildCharts(sample) {
+  // Use d3.json to load the samples.json file 
+  d3.json("samples.json").then((data) => {
+    console.log(data);
+
+    // Create a variable that holds the samples array. 
+
+    // Create a variable that filters the samples for the object with the desired sample number.
+
+    // 1. Create a variable that filters the metadata array for the object with the desired sample number.
+
+    // Create a variable that holds the first sample in the array.
+  
+
+    // 2. Create a variable that holds the first sample in the metadata array.
+    
+
+    // Create variables that hold the otu_ids, otu_labels, and sample_values.
+
+
+    // 3. Create a variable that holds the washing frequency.
+   
+    // Create the yticks for the bar chart.
+
+    // Use Plotly to plot the bar data and layout.
+    Plotly.newPlot();
+    
+    // Use Plotly to plot the bubble data and layout.
+    Plotly.newPlot();
+   
+    
+    // 4. Create the trace for the gauge chart.
+    var gaugeData = [
+     
+    ];
+    
+    // 5. Create the layout for the gauge chart.
+    var gaugeLayout = { 
+     
+    };
+
+    // 6. Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot();
+  });
+}
