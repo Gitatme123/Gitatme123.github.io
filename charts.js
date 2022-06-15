@@ -63,13 +63,13 @@ function buildCharts(sample) {
     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
 
     //  5. Create a variable that holds the first sample in the array.
-    var firstSample_1 = sampArray[0];
+    var firstSample = sampArray[0];
 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_ids_ = firstSample_1['otu_ids'];
-    var otu_labels_ = firstSample_1['otu_labels'];
-    var sample_values = firstSample_1['sample_values'];
+    var otu_ids_ = firstSample['otu_ids'];
+    var otu_labels_ = firstSample['otu_labels'];
+    var sample_values = firstSample['sample_values'];
 
 
 
@@ -78,19 +78,20 @@ function buildCharts(sample) {
     //  so the otu_ids with the most bacteria are last. 
 
     var yticks = otu_ids_.map(otu_ids_ => 'OTU ${otu_ids_}').slice(0,10).reverse();
+    var xticks = sample_values.map(sample_values => parseInt(sample_values));
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
-      x: sample_values.slice(0, 10).reverse(),
+      x: xticks.slice(0, 10).reverse(),
       y: yticks,
-      text: otu_labels_.slice(0, 10).reverse(),
+      hovertext: otu_labels_.slice(0, 10).reverse(),
       type: 'bar',
-      orientation: 'h'
+      margin: 10,
     } ];
 
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Most Bacteria per otu label",
+      title: "Top 10 Bacteria Cultures Found",
       xaxis: {title: "Bacteria Sample Value" },
       yaxis: {title: "OTU Label"}
     };
@@ -111,13 +112,13 @@ function buildCharts(sample) {
     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
 
     //  5. Create a variable that holds the first sample in the array.
-    var firstSample_2 = sampArray[0];
+    var firstSample = sampArray[0];
 
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otu_ids_1 = firstSample_2['otu_ids'];
-    var otu_labels_1 = firstSample_2['otu_labels'];
-    var sample_values1 = firstSample_2['sample_values'];
+    var otu_ids_1 = firstSample['otu_ids'];
+    var otu_labels_1 = firstSample['otu_labels'];
+    var sample_values1 = firstSample['sample_values'];
 
     var yticks_ = sample_values1.map(sample_values1 => parseInt(sample_values1));
 
