@@ -80,7 +80,7 @@ function buildCharts(sample) {
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
-      x: sample_values.slice(0, 10).reverse(),
+      x: sample_values,
       y: yticks,
       text: otu_labels_.slice(0, 10).reverse(),
       type: 'bar',
@@ -151,14 +151,14 @@ function buildCharts(sample) {
 //     console.log(data);
  
   var washFrequency = firstSample['wfreq'];
-
+  console.log(washFrequency);
     // 3. Create a variable that holds the washing frequency.
     // Create the yticks for the bar chart.
 
   var yticks_2 = parseInt(washFrequency);
   
-   
-    
+  console.log(yticks_2); 
+
     // 4. Create the trace for the gauge chart.
     var gaugeData = [
       {
@@ -180,7 +180,7 @@ function buildCharts(sample) {
           threshold: {
             line: { color: "black", width: 8 },
             thickness: 0.75,
-            value: 4
+            value: yticks_2
           }
       }
     }
