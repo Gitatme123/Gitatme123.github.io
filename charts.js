@@ -168,16 +168,30 @@ function buildCharts(sample) {
         type: "indicator",
         mode: "gauge+number",
         delta: {reference: 2},
-        gauge: {axis: {range: [null, 10]}}
-
+        gauge: {
+          axis: { range: [null, 10] },
+          steps: [
+            { range: [0, 2], color: "red" },
+            { range: [2, 4], color: "orange" },
+            { range: [4, 6], color: "yellow" },
+            { range: [6, 8], color: "lightGreen" },
+            { range: [8, 10], color: "green" }
+          ],
+          threshold: {
+            line: { color: "black", width: 8 },
+            thickness: 0.75,
+            value: 4
+          }
       }
+    }
     ];
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-        paper_bgcolor: "white",
         width: 600,
         height: 400,
+        paper_bgcolor: "white",
+        font: { color: "darkblue", family: "Arial" }
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
