@@ -80,7 +80,7 @@ function buildCharts(sample) {
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
-      x: sample_values,
+      x: otu_ids_,
       y: yticks,
       text: otu_labels_.slice(0, 10).reverse(),
       type: 'bar',
@@ -94,19 +94,6 @@ function buildCharts(sample) {
       yaxis: {title: yticks}
     };
     // 10. Use Plotly to plot the data with the layout. 
-
-//Deliverable 2
-// Bar and Bubble charts
-// Create the buildCharts function.
-// function buildCharts(sample) {
-//   // Use d3.json to load and retrieve the samples.json file 
-//   d3.json("samples.json").then((data) => {
-//     var metadata_1 = data.samples;
-//     // 4. Create a variable that filters the samples for the object with the desired sample number.
-//     var sampArray = metadata_1.filter(sampleObj => sampleObj.id == sample);
-
-//     //  5. Create a variable that holds the first sample in the array.
-//     var firstSample = sampArray[0];
 
 
      // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
